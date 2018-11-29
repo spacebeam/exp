@@ -1,6 +1,6 @@
 #!/usr/bin/env luajit
 --
--- Spawn multi-dimensional nodes of monkey daemons — all operations run using the pkg command.
+-- Spawn multi-dimensional nodes of daemons — all operations run using the pkg command.
 --
 local argparse = require("argparse")
 local socket = require("socket")

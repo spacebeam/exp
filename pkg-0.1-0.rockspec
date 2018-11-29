@@ -7,9 +7,9 @@ source = {
 }
 
 description = {
-  summary = "Capuchino HPC package command line toolkit.",
+  summary = "pkg command line toolkit.",
   detailed = "Spawn multi-dimensional nodes of daemons — all operations run using the pkg command.",
-  homepage = "https://nonsense.ws",
+  homepage = "https://spacebeam.io",
   license = "AGPL 3"
 }
 
