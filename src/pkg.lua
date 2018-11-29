@@ -20,6 +20,7 @@ local parser = argparse() {
 -- spawning daemons at location
 parser:option("-s --spawn", "spawn daemons on location", "/opt/daemons")
 parser:option("-u --unit", "unit name, uuid or hash", false)
+parser:option("-d --directory", "sandbox pkg directory", "/opt/pkg")
 -- pkg command
 parser:command_target("command")
 parser:command("spawn")
@@ -31,8 +32,8 @@ parser:command("repair")
 parser:command("status")
 parser:command("run")
 -- local system variables
-local build = "singularity build ~/.pkgs/"
-local runsc = "singularity run --writable ~/.pkgs/"
+local build = "singularity build --sandbox"
+local runsc = "singularity run --writable /opt/pkg/"
 local daemons = "git clone https://github.com/spacebeam/daemons"
 -- error messages
 local errors = {
@@ -71,11 +72,11 @@ elseif args['command'] == 'start' then
 elseif args['command'] == 'status' then
     os.execute(args['spawn'] .. release .. " ping")
 elseif args['command'] == 'run' then
-    os.execute(execute .. args['unit'] .. ".img")
+    os.execute(runsc .. args['unit'])
 elseif args['command'] == 'repair' then
     print(messages[math.random(#messages)])
 elseif args['command'] == 'remove' then
-    os.execute("rm -Rf ~/.pkgs/" .. args['unit'] .. ".img")
+    os.execute("rm -Rf /opt/pkg/" .. args['unit'])
 elseif args['command'] == 'search' then
     print('search')
 elseif args['command'] == 'spawn' then
