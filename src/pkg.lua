@@ -17,10 +17,10 @@ local parser = argparse() {
    description = "pkg command line toolkit.",
    epilog = "Remember, as your units grow in number, you must spawn more nodes to control them."
 }
--- spawning daemons at location
+-- Spawning daemons at location
 parser:option("-u --unit", "unit name, uuid or hash", false)
 parser:option("-d --directory", "Sandbox pkg directory", "/opt/pkg")
--- pkg command
+-- CLI pkg command
 parser:command_target("command")
 parser:command("install")
 parser:command("remove")
@@ -33,7 +33,7 @@ local build = "singularity build --sandbox"
 local runsc = "singularity run --writable /opt/pkg/"
 local daemons = "git clone https://github.com/spacebeam/daemons"
 local spawn = "/opt/daemons/"
--- messages
+-- system messages
 local messages = {
   'Can I take your order?',
   'Go ahead HQ.',
@@ -51,13 +51,12 @@ local messages = {
 }
 -- parse arguments
 local args = parser:parse()
--- until more complete implementation print args on exec time.
-print(args)
 -- rage against the finite state machine
 if args['command'] == 'install' then
     if args['unit'] then
         print(messages[math.random(#messages)])
         print('Installing unit '.. args['unit'])
+        -- install some singularity container/unit
         print(messages[math.random(#messages)])
     else
         os.execute(daemons .. " " .. spawn)
@@ -67,11 +66,10 @@ if args['command'] == 'install' then
         os.execute("cd " .. spawn .. " && make all")
         print(messages[math.random(#messages)])
     end
-    -- install some singularity container/unit
 elseif args['command'] == 'start' then
-    os.execute(args['spawn'] .. release .. " start")
+    os.execute(spawn .. release .. " start")
 elseif args['command'] == 'status' then
-    os.execute(args['spawn'] .. release .. " ping")
+    os.execute(spawn .. release .. " ping")
 elseif args['command'] == 'run' then
     os.execute(runsc .. args['unit'])
 elseif args['command'] == 'repair' then
