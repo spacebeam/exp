@@ -18,13 +18,10 @@ local parser = argparse() {
    epilog = "Remember, as your units grow in number, you must spawn more nodes to control them."
 }
 -- spawning daemons at location
-parser:option("-s --spawn", "spawn daemons on location", "/opt/daemons")
 parser:option("-u --unit", "unit name, uuid or hash", false)
-parser:option("-d --directory", "sandbox pkg directory", "/opt/pkg")
+parser:option("-d --directory", "Sandbox pkg directory", "/opt/pkg")
 -- pkg command
 parser:command_target("command")
-parser:command("spawn")
-parser:command("search")
 parser:command("install")
 parser:command("remove")
 parser:command("start")
@@ -35,6 +32,7 @@ parser:command("run")
 local build = "singularity build --sandbox"
 local runsc = "singularity run --writable /opt/pkg/"
 local daemons = "git clone https://github.com/spacebeam/daemons"
+local spawn = "/opt/daemons"
 -- error messages
 local errors = {
   'Can I take your order?',
@@ -65,6 +63,11 @@ if args['command'] == 'install' then
         print('Installing unit '.. args['unit'])
     else
         print( errors[ math.random( #errors ) ] )
+        os.execute(daemons .. " " .. spawn)
+        os.execute("curl -0 https://erlang.mk/erlang.mk")
+        os.execute("mv erlang.mk " .. spawn)
+        os.execute("rm erlang.mk")
+        os.execute("cd " .. spawn .. " && make all")
     end
     -- install some singularity container/unit
 elseif args['command'] == 'start' then
@@ -77,15 +80,6 @@ elseif args['command'] == 'repair' then
     print(messages[math.random(#messages)])
 elseif args['command'] == 'remove' then
     os.execute("rm -Rf /opt/pkg/" .. args['unit'])
-elseif args['command'] == 'search' then
-    print('search')
-elseif args['command'] == 'spawn' then
-    os.execute(daemons .. " " .. args['spawn'])
-    os.execute("curl -O https://erlang.mk/erlang.mk")
-    os.execute("mv erlang.mk " .. args['spawn'])
-    -- if crash remove erlang.mk from current directory.
-    os.execute("rm erlang.mk")
-    os.execute("cd " .. args['spawn'] .." && make all")
 else
     print('do something else')
 end
