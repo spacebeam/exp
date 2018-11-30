@@ -33,8 +33,8 @@ local build = "singularity build --sandbox"
 local runsc = "singularity run --writable /opt/pkg/"
 local daemons = "git clone https://github.com/spacebeam/daemons"
 local spawn = "/opt/daemons/"
--- error messages
-local errors = {
+-- messages
+local messages = {
   'Can I take your order?',
   'Go ahead HQ.',
   'container unit?',
@@ -43,9 +43,6 @@ local errors = {
   'In case of a water landing, you may be used as a flotation device.',
   'To hurl chunks, please use the vomit bag in front of you.',
   'Please keep your arms and legs inside until this ride comes to a full and complete stop.',
-}
--- responses
-local messages = {
   'In the pipe, five by five.',
   'In transit HQ.',
   'Buckle up.',
@@ -59,15 +56,16 @@ print(args)
 -- rage against the finite state machine
 if args['command'] == 'install' then
     if args['unit'] then
-        print( messages[ math.random( #messages ) ] )
+        print(messages[math.random(#messages)])
         print('Installing unit '.. args['unit'])
+        print(messages[math.random(#messages)])
     else
-        print( errors[ math.random( #errors ) ] )
         os.execute(daemons .. " " .. spawn)
         os.execute("curl -O https://erlang.mk/erlang.mk")
         os.execute("mv erlang.mk " .. spawn)
         os.execute("rm erlang.mk")
         os.execute("cd " .. spawn .. " && make all")
+        print(messages[math.random(#messages)])
     end
     -- install some singularity container/unit
 elseif args['command'] == 'start' then
