@@ -56,7 +56,7 @@ if args['command'] == 'install' then
     if args['unit'] then
         print(messages[math.random(#messages)])
         print('Installing unit '.. args['unit'])
-        -- install some singularity container/unit
+        -- install some singularity container
         print(messages[math.random(#messages)])
     else
         os.execute(daemons .. " " .. spawn)
@@ -67,6 +67,11 @@ if args['command'] == 'install' then
         print(messages[math.random(#messages)])
     end
 elseif args['command'] == 'start' then
+    if args['unit'] then
+        print(messages[math.random(#messages)])
+        print('Starting unit ' .. args['unit'])
+        -- start some singularity instance
+        print(messages[math.random(#messages)])
     os.execute(spawn .. release .. " start")
 elseif args['command'] == 'status' then
     os.execute(spawn .. release .. " ping")
