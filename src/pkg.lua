@@ -32,7 +32,7 @@ parser:command("run")
 local build = "singularity build --sandbox"
 local runsc = "singularity run --writable /opt/pkg/"
 local daemons = "git clone https://github.com/spacebeam/daemons"
-local spawn = "/opt/daemons"
+local spawn = "/opt/daemons/"
 -- error messages
 local errors = {
   'Can I take your order?',
@@ -64,7 +64,7 @@ if args['command'] == 'install' then
     else
         print( errors[ math.random( #errors ) ] )
         os.execute(daemons .. " " .. spawn)
-        os.execute("curl -0 https://erlang.mk/erlang.mk")
+        os.execute("curl -O https://erlang.mk/erlang.mk")
         os.execute("mv erlang.mk " .. spawn)
         os.execute("rm erlang.mk")
         os.execute("cd " .. spawn .. " && make all")
