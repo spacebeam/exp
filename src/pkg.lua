@@ -28,6 +28,8 @@ parser:command("start")
 parser:command("repair")
 parser:command("status")
 parser:command("run")
+-- Join and leave Erlang nodes!
+parser:command("cluster")
 -- local system variables
 local build = "singularity build --sandbox"
 local runsc = "singularity run --writable /opt/pkg/"
@@ -81,6 +83,9 @@ elseif args['command'] == 'repair' then
     print(messages[math.random(#messages)])
 elseif args['command'] == 'remove' then
     os.execute("rm -Rf /opt/pkg/" .. args['unit'])
+-- cluster command
+elseif args['command'] == 'cluster' then
+    print(messages[math.random(#messages)])
 else
     print('do something else')
 end
