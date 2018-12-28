@@ -50,6 +50,7 @@ local messages = {
 }
 -- parse arguments
 local args = parser:parse()
+-- do your stuff!
 if args['command'] == 'install' then
     if args['unit'] then
         print(messages[math.random(#messages)])
