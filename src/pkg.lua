@@ -25,11 +25,8 @@ parser:command_target("command")
 parser:command("install")
 parser:command("remove")
 parser:command("start")
-parser:command("repair")
 parser:command("status")
 parser:command("run")
--- Join and leave Erlang nodes!
-parser:command("cluster")
 -- local system variables
 local build = "singularity build --sandbox"
 local runsc = "singularity run --writable /opt/scif/"
@@ -53,7 +50,6 @@ local messages = {
 }
 -- parse arguments
 local args = parser:parse()
--- rage against the finite state machine
 if args['command'] == 'install' then
     if args['unit'] then
         print(messages[math.random(#messages)])
@@ -81,13 +77,16 @@ elseif args['command'] == 'status' then
     os.execute(spawn .. release .. " ping")
 elseif args['command'] == 'run' then
     os.execute(runsc .. args['unit'])
-elseif args['command'] == 'repair' then
-    print(messages[math.random(#messages)])
 elseif args['command'] == 'remove' then
-    os.execute("rm -Rf /opt/scif/" .. args['unit'])
--- experimental cluster command
-elseif args['command'] == 'cluster' then
-    print(messages[math.random(#messages)])
+    if args['unit'] then
+        print('Remove unit ' .. args['unit'])
+        os.execute("rm -Rf /opt/scif/" .. args['unit'])
+        print('Done... ')
+    else
+        print('Remove Erlang/OTP release from "' .. spawn .. '"')
+        os.execute("rm -Rf " .. spawn)
+        print('Done... ' .. messages[math.random(#messages)])
+    end
 else
     print('do something else')
 end
