@@ -27,7 +27,7 @@ parser:command("remove")
 parser:command("start")
 parser:command("status")
 parser:command("run")
--- local system variables
+-- system variables
 local build = "singularity build --sandbox"
 local runsc = "singularity run --writable /opt/scif/"
 local daemons = "git clone https://github.com/spacebeam/daemons"
