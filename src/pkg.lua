@@ -17,7 +17,7 @@ local parser = argparse() {
    description = "pkg command line toolkit.",
    epilog = "Remember, as your units grow in number, you must spawn more nodes to control them."
 }
--- Spawning daemons at location
+-- Spawning sandbox scif unit at directory
 parser:option("-u --unit", "unit name, uuid or hash", false)
 parser:option("-d --directory", "Sandbox directory", "/opt/scif")
 -- CLI pkg command
