@@ -19,7 +19,7 @@ local parser = argparse() {
 }
 -- Spawning daemons at location
 parser:option("-u --unit", "unit name, uuid or hash", false)
-parser:option("-d --directory", "Sandbox pkg directory", "/opt/pkg")
+parser:option("-d --directory", "Sandbox directory", "/opt/scif")
 -- CLI pkg command
 parser:command_target("command")
 parser:command("install")
@@ -32,7 +32,7 @@ parser:command("run")
 parser:command("cluster")
 -- local system variables
 local build = "singularity build --sandbox"
-local runsc = "singularity run --writable /opt/pkg/"
+local runsc = "singularity run --writable /opt/scif/"
 local daemons = "git clone https://github.com/spacebeam/daemons"
 local spawn = "/opt/daemons/"
 -- system messages
@@ -74,7 +74,9 @@ elseif args['command'] == 'start' then
         print('Starting unit ' .. args['unit'])
         -- start some singularity instance
         print(messages[math.random(#messages)])
-    os.execute(spawn .. release .. " start")
+    else
+        os.execute(spawn .. release .. " start")
+    end
 elseif args['command'] == 'status' then
     os.execute(spawn .. release .. " ping")
 elseif args['command'] == 'run' then
@@ -82,7 +84,7 @@ elseif args['command'] == 'run' then
 elseif args['command'] == 'repair' then
     print(messages[math.random(#messages)])
 elseif args['command'] == 'remove' then
-    os.execute("rm -Rf /opt/pkg/" .. args['unit'])
+    os.execute("rm -Rf /opt/scif/" .. args['unit'])
 -- cluster command
 elseif args['command'] == 'cluster' then
     print(messages[math.random(#messages)])
