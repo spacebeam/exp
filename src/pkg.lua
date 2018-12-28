@@ -85,7 +85,7 @@ elseif args['command'] == 'repair' then
     print(messages[math.random(#messages)])
 elseif args['command'] == 'remove' then
     os.execute("rm -Rf /opt/scif/" .. args['unit'])
--- cluster command
+-- experimental cluster command
 elseif args['command'] == 'cluster' then
     print(messages[math.random(#messages)])
 else
