@@ -82,7 +82,7 @@ elseif args['command'] == 'remove' then
     if args['unit'] then
         print('Remove unit ' .. args['unit'])
         os.execute("rm -Rf /opt/scif/" .. args['unit'])
-        print('Done... ')
+        print('Done... ' .. messages[math.random(#messages)])
     else
         print('Remove Erlang/OTP release from "' .. spawn .. '"')
         os.execute("rm -Rf " .. spawn)
