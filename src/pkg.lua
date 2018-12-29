@@ -53,8 +53,7 @@ local args = parser:parse()
 -- do your stuff
 if args['command'] == 'install' then
     if args['unit'] then
-        print(messages[math.random(#messages)])
-        print('Installing unit '.. args['unit'])
+        print('Installing scif unit ' .. args['unit'] .. ' into ' .. args['directory'])
         -- install some singularity container
         print(messages[math.random(#messages)])
     else
@@ -67,17 +66,26 @@ if args['command'] == 'install' then
     end
 elseif args['command'] == 'start' then
     if args['unit'] then
-        print(messages[math.random(#messages)])
-        print('Starting unit ' .. args['unit'])
+        print('Starting scif unit ' .. args['unit'])
         -- start some singularity instance
-        print(messages[math.random(#messages)])
+        print('Done... ' .. messages[math.random(#messages)])
     else
         os.execute(spawn .. release .. " start")
     end
 elseif args['command'] == 'status' then
-    os.execute(spawn .. release .. " ping")
+    if args['unit'] then
+        print('Getting the status of scif unit ' .. args['unit'] )
+        -- Query and return last status
+        print('Done.. ' .. messages[math.random(#messages)])
+    else
+        os.execute(spawn .. release .. " ping")
+    end
 elseif args['command'] == 'run' then
-    os.execute(runsc .. args['unit'])
+    if args['unit'] then
+        os.execute(runsc .. args['unit'])
+    else
+        print(messages[math.random(#messages)])
+    end
 elseif args['command'] == 'remove' then
     if args['unit'] then
         print('Remove unit ' .. args['unit'])
