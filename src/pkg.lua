@@ -86,7 +86,7 @@ elseif args['command'] == 'run' then
     if args['unit'] then
         os.execute(runsc .. args['unit'])
     else
-        print(messages[math.random(#messages)])
+        print('Did you forget about the ' .. messages[4])
     end
 elseif args['command'] == 'remove' then
     if args['unit'] then
