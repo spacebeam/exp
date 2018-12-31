@@ -99,5 +99,6 @@ elseif args['command'] == 'remove' then
         print('Done... ' .. messages[math.random(#messages)])
     end
 else
-    print('do something else')
+    -- do something else
+    print(messages[1])
 end
