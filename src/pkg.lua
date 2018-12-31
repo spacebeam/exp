@@ -56,14 +56,14 @@ if args['command'] == 'install' then
     if args['unit'] then
         print('Installing scif unit ' .. args['unit'] .. ' into ' .. args['directory'])
         -- install some singularity container
-        print(messages[math.random(#messages)])
+        print('Done... ' .. messages[math.random(#messages)])
     else
         os.execute(daemons .. " " .. spawn)
         os.execute("curl -O https://erlang.mk/erlang.mk")
         os.execute("mv erlang.mk " .. spawn)
         os.execute("rm erlang.mk")
         os.execute("cd " .. spawn .. " && make all")
-        print(messages[math.random(#messages)])
+        print('Done... ' .. messages[math.random(#messages)])
     end
 elseif args['command'] == 'start' then
     if args['unit'] then
@@ -72,6 +72,7 @@ elseif args['command'] == 'start' then
         print('Done... ' .. messages[math.random(#messages)])
     else
         os.execute(spawn .. release .. " start")
+        print('Done... ' .. messages[math.random(#messages)])
     end
 elseif args['command'] == 'status' then
     if args['unit'] then
