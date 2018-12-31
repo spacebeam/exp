@@ -19,7 +19,7 @@ local parser = argparse() {
 }
 -- Spawning sandbox scif unit at directory
 parser:option("-u --unit", "unit name, uuid or hash", false)
-parser:option("-d --directory", "Sandbox directory", "/opt/scif")
+parser:option("-d --directory", "Sandbox directory", "/opt/pkg/")
 -- CLI pkg command
 parser:command_target("command")
 parser:command("install")
@@ -29,7 +29,6 @@ parser:command("status")
 parser:command("run")
 -- system variables
 local build = "singularity build --sandbox"
-local runsc = "singularity run --writable /opt/scif/"
 local daemons = "git clone https://github.com/spacebeam/daemons"
 local spawn = "/opt/daemons/"
 -- system messages
@@ -51,6 +50,7 @@ local messages = {
 }
 -- parse arguments
 local args = parser:parse()
+local runsc = "singularity run --writable " .. args['directory']
 -- do your stuff
 if args['command'] == 'install' then
     if args['unit'] then
