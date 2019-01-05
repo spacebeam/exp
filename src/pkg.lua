@@ -69,10 +69,13 @@ elseif args['command'] == 'start' then
     if args['unit'] then
         print('Starting scif unit ' .. args['unit'])
         -- start some singularity instance
+        local command = "singularity instance.start " .. args['directory']
+        os.execute(command .. args['unit'] .. " " .. args['unit'])
         print('Done... ' .. messages[math.random(#messages)])
     else
         os.execute(spawn .. release .. " start")
         print('Done... ' .. messages[math.random(#messages)])
+
     end
 elseif args['command'] == 'status' then
     if args['unit'] then
