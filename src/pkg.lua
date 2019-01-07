@@ -86,16 +86,17 @@ elseif args['command'] == 'stop' then
         os.execute(stop .. args['unit'] .. " " .. args['unit'])
         print('Done... ' .. messages[math.random(#messages)])
     else
-        os.execute(spawn .. release .. " stop"
         os.execute(stop .. "daemons" .. " bridge")
+        os.execute(spawn .. release .. " stop")
         print('Done... ' .. messages[math.random(#messages)])
     end
 elseif args['command'] == 'status' then
     if args['unit'] then
         print('Getting the status of scif unit ' .. args['unit'] )
-        -- Query and return last status
+        -- ?
         print('Done.. ' .. messages[math.random(#messages)])
     else
+        os.execute("singularity instance.list")
         os.execute(spawn .. release .. " ping")
     end
 elseif args['command'] == 'run' then
