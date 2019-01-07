@@ -1,1 +1,0 @@
--- communication between pkg and daemons
