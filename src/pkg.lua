@@ -25,15 +25,19 @@ parser:command_target("command")
 parser:command("install")
 parser:command("remove")
 parser:command("start")
+parser:command("stop")
 parser:command("status")
+-- How if instead of run we force the use of scif apps?
 parser:command("run")
+-- We can probably support both of them, let just start with run.
+
 -- system variables
 local build = "singularity build --sandbox"
 local daemons = "git clone https://github.com/spacebeam/daemons"
 local spawn = "/opt/daemons/"
 -- system messages
 local messages = {
-  'Adjutant online. Good morning, Captain.',
+  'Computer online. Good morning, Human.',
   'Can I take your order?',
   'Go ahead HQ.',
   'container unit?',
@@ -51,6 +55,8 @@ local messages = {
 -- parse arguments
 local args = parser:parse()
 local runsc = "singularity run --writable " .. args['directory']
+local instart = "singularity instance.start --writable " .. args['directory']
+local instop = "singularity instance.stop " .. args['directory']
 -- do your stuff
 if args['command'] == 'install' then
     if args['unit'] then
@@ -68,14 +74,22 @@ if args['command'] == 'install' then
 elseif args['command'] == 'start' then
     if args['unit'] then
         print('Starting scif unit ' .. args['unit'])
-        -- start some singularity instance
-        local command = "singularity instance.start " .. args['directory']
-        os.execute(command .. args['unit'] .. " " .. args['unit'])
+        os.execute(instart .. args['unit'] .. " " .. args['unit'])
         print('Done... ' .. messages[math.random(#messages)])
     else
         os.execute(spawn .. release .. " start")
+        os.execute(instart .. "daemons" .. " " .. "bridge")
         print('Done... ' .. messages[math.random(#messages)])
-
+    end
+elseif args['command'] == 'stop' then
+    if args['unit'] then
+        print('Stoping scif unit ' .. args['unit'])
+        os.execute(instop .. args['unit'] .. " " .. args['unit'])
+        print('Done... ' .. messages[math.random(#messages)])
+    else
+        os.execute()
+        os.execute()
+        print()
     end
 elseif args['command'] == 'status' then
     if args['unit'] then
