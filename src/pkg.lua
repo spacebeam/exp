@@ -11,7 +11,7 @@ uuid.randomseed(socket.gettime()*10000)
 local session_uuid = uuid()
 -- Erlang/OTP release
 local release = "/_rel/daemons_release/bin/daemons_release"
--- Parse CLI arguments
+-- CLI argument parser
 local parser = argparse() {
    name = "pkg",
    description = "pkg command line toolkit.",
@@ -28,10 +28,9 @@ parser:command("start")
 parser:command("stop")
 parser:command("status")
 -- How if instead of run we force the use of scif apps?
-parser:command("run")
 -- We can probably support both of them, let just start with run.
-
--- system variables
+parser:command("run")
+-- Your system variables
 local build = "singularity build --sandbox"
 local daemons = "git clone https://github.com/spacebeam/daemons"
 local spawn = "/opt/daemons/"
@@ -52,12 +51,12 @@ local messages = {
   'Strap yourselves in, boys.',
   'I copy that.',
 }
--- parse arguments
+-- Parse your arguments
 local args = parser:parse()
-local runsc = "singularity run --writable " .. args['directory']
-local instart = "singularity instance.start --writable " .. args['directory']
-local instop = "singularity instance.stop " .. args['directory']
--- do your stuff
+local run = "singularity run --writable " .. args['directory']
+local start = "singularity instance.start --writable " .. args['directory']
+local stop = "singularity instance.stop " .. args['directory']
+-- Do your stuff
 if args['command'] == 'install' then
     if args['unit'] then
         print('Installing scif unit ' .. args['unit'] .. ' into ' .. args['directory'])
@@ -74,22 +73,22 @@ if args['command'] == 'install' then
 elseif args['command'] == 'start' then
     if args['unit'] then
         print('Starting scif unit ' .. args['unit'])
-        os.execute(instart .. args['unit'] .. " " .. args['unit'])
+        os.execute(start .. args['unit'] .. " " .. args['unit'])
         print('Done... ' .. messages[math.random(#messages)])
     else
         os.execute(spawn .. release .. " start")
-        os.execute(instart .. "daemons" .. " " .. "bridge")
+        os.execute(start .. "daemons" .. " bridge")
         print('Done... ' .. messages[math.random(#messages)])
     end
 elseif args['command'] == 'stop' then
     if args['unit'] then
         print('Stoping scif unit ' .. args['unit'])
-        os.execute(instop .. args['unit'] .. " " .. args['unit'])
+        os.execute(stop .. args['unit'] .. " " .. args['unit'])
         print('Done... ' .. messages[math.random(#messages)])
     else
-        os.execute()
-        os.execute()
-        print()
+        os.execute(spawn .. release .. " stop"
+        os.execute(stop .. "daemons" .. " bridge")
+        print('Done... ' .. messages[math.random(#messages)])
     end
 elseif args['command'] == 'status' then
     if args['unit'] then
@@ -101,7 +100,7 @@ elseif args['command'] == 'status' then
     end
 elseif args['command'] == 'run' then
     if args['unit'] then
-        os.execute(runsc .. args['unit'])
+        os.execute(run .. args['unit'])
     else
         print('Did you forget about the ' .. messages[4])
     end
