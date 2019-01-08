@@ -40,7 +40,7 @@ local messages = {
   'Computer online. Good morning, Human.',
   'Can I take your order?',
   'Go ahead HQ.',
-  'container unit?',
+  'SCI-F unit?',
   'Input unit.',
   'When removing your overhead luggage, please be careful.',
   'In case of a water landing, you may be used as a flotation device.',
