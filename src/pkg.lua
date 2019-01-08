@@ -37,7 +37,7 @@ local daemons = "git clone https://github.com/spacebeam/daemons"
 local spawn = "/opt/daemons/"
 -- system messages
 local messages = {
-  'Computer online. Good morning, Human.',
+  'Computer online. Hello human.',
   'Can I take your order?',
   'Go ahead HQ.',
   'SCI-F unit?',
