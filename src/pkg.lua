@@ -18,6 +18,7 @@ local parser = argparse() {
    epilog = "Remember, as your units grow in number, you must spawn more nodes to control them."
 }
 -- Spawning sandbox scif unit at directory
+parser:option("-a --app", "SCI-F application name", false)
 parser:option("-u --unit", "unit name, uuid or hash", false)
 parser:option("-d --directory", "Sandbox directory", "/opt/pkg/")
 -- CLI pkg command
