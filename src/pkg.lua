@@ -10,7 +10,7 @@ uuid.randomseed(socket.gettime()*10000)
 -- Session UUID
 local session_uuid = uuid()
 -- Erlang/OTP release
-local release = "/_rel/xelnaga_release/bin/xelnaga_release"
+local release = "/_rel/ghosts_release/bin/ghosts_release"
 -- CLI argument parser
 local parser = argparse() {
    name = "pkg",
@@ -33,8 +33,8 @@ parser:command("status")
 parser:command("run")
 -- Your system variables
 local build = "singularity build --sandbox"
-local xelnaga = "git clone https://github.com/spacebeam/xelnaga"
-local spawn = "/opt/xelnaga/"
+local ghosts = "git clone https://github.com/spacebeam/ghosts"
+local spawn = "/opt/ghosts/"
 -- system messages
 local messages = {
   'Computer online. Hello human.',
@@ -64,7 +64,7 @@ if args['command'] == 'install' then
         -- install some singularity container
         print('Done... ' .. messages[math.random(#messages)])
     else
-        os.execute(xelnaga .. " " .. spawn)
+        os.execute(ghosts .. " " .. spawn)
         os.execute("curl -O https://erlang.mk/erlang.mk")
         os.execute("mv erlang.mk " .. spawn)
         os.execute("rm erlang.mk")
@@ -78,7 +78,7 @@ elseif args['command'] == 'start' then
         print('Done... ' .. messages[math.random(#messages)])
     else
         os.execute(spawn .. release .. " start")
-        os.execute(start .. "xelnaga" .. " bridge")
+        os.execute(start .. "ghosts" .. " bridge")
         print('Done... ' .. messages[math.random(#messages)])
     end
 elseif args['command'] == 'stop' then
@@ -87,7 +87,7 @@ elseif args['command'] == 'stop' then
         os.execute(stop .. args['unit'] .. " " .. args['unit'])
         print('Done... ' .. messages[math.random(#messages)])
     else
-        os.execute(stop .. "xelnaga" .. " bridge")
+        os.execute(stop .. "ghosts" .. " bridge")
         os.execute(spawn .. release .. " stop")
         print('Done... ' .. messages[math.random(#messages)])
     end
