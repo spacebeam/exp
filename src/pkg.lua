@@ -72,7 +72,7 @@ if args['command'] == 'install' then
     end
 elseif args['command'] == 'start' then
     if args['unit'] then
-        print('Starting scif unit ' .. args['unit'])
+        print('Starting unit ' .. args['unit'])
         os.execute(start .. args['unit'] .. " " .. args['unit'])
         print('Done... ' .. messages[math.random(#messages)])
     else
@@ -82,7 +82,7 @@ elseif args['command'] == 'start' then
     end
 elseif args['command'] == 'stop' then
     if args['unit'] then
-        print('Stoping scif unit ' .. args['unit'])
+        print('Stoping unit ' .. args['unit'])
         os.execute(stop .. args['unit'] .. " " .. args['unit'])
         print('Done... ' .. messages[math.random(#messages)])
     else
@@ -92,8 +92,8 @@ elseif args['command'] == 'stop' then
     end
 elseif args['command'] == 'status' then
     if args['unit'] then
-        print('Getting the status of scif unit ' .. args['unit'] )
-        -- ?
+        print('Getting the status of unit ' .. args['unit'] )
+        -- status
         print('Done.. ' .. messages[math.random(#messages)])
     else
         os.execute("singularity instance.list")
@@ -111,7 +111,7 @@ elseif args['command'] == 'remove' then
         os.execute("rm -Rf /opt/scif/" .. args['unit'])
         print('Done... ' .. messages[math.random(#messages)])
     else
-        print('Remove Erlang/OTP release from "' .. spawn .. '"')
+        print('Remove blackboard release from "' .. spawn .. '"')
         os.execute("rm -Rf " .. spawn)
         print('Done... ' .. messages[math.random(#messages)])
     end
