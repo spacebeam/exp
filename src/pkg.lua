@@ -37,7 +37,6 @@ local blackboard = "git clone https://github.com/spacebeam/blackboard"
 local spawn = "/opt/blackboard/"
 -- system messages
 local messages = {
-  'Computer online. Hello human.',
   'Can I take your order?',
   'Go ahead HQ.',
   'SCI-F unit?',
@@ -60,8 +59,8 @@ local stop = "singularity instance.stop " .. args['directory']
 -- Do your stuff
 if args['command'] == 'install' then
     if args['unit'] then
-        print('Installing scif unit ' .. args['unit'] .. ' into ' .. args['directory'])
-        -- install some singularity container
+        print('Installing ' .. args['unit'] .. ' into ' .. args['directory'])
+        -- install singularity container
         print('Done... ' .. messages[math.random(#messages)])
     else
         os.execute(blackboard .. " " .. spawn)
