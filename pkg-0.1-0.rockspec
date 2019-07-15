@@ -17,6 +17,7 @@ dependencies = {
   "lua == 5.1",
   "argparse",
   "luasocket",
+  "lzmq-ffi",
   "uuid"
 }
 
