@@ -20,6 +20,7 @@ local parser = argparse() {
 -- Spawning sandbox scif unit at directory
 parser:option("-a --app", "SCI-F application name", false)
 parser:option("-u --unit", "unit name, uuid or hash", false)
+parser:option("-x --execute", "exec string", "")
 parser:option("-d --directory", "Sandbox directory", "/opt/pkg/")
 -- CLI pkg command
 parser:command_target("command")
@@ -101,7 +102,11 @@ elseif args['command'] == 'status' then
     end
 elseif args['command'] == 'run' then
     if args['unit'] then
-        os.execute(run .. args['unit'])
+        if args['execute'] then
+            os.execute(run .. args['unit'] .. ' ' .. args['execute'])
+        else
+            os.execute(run .. args['unit'])
+        end
     else
         print('Did you forget about the ' .. messages[4])
     end
