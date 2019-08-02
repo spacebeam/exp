@@ -27,8 +27,8 @@ parser:option("-a --app", "application name", false)
 parser:option("-d --directory", "Sandbox directory", "/opt/sandbox/")
 -- CLI exp command
 parser:command_target("command")
-parser:command("install")
-parser:command("remove")
+parser:command("build")
+parser:command("clone")
 parser:command("cluster")
 parser:command("start")
 parser:command("stop")
@@ -38,11 +38,16 @@ parser:command("stop")
 parser:command("run")
 parser:command("status")
 parser:command("version")
+-- Parse your arguments
+local args = parser:parse()
 -- Your system variables
+local run = "singularity run --writable " .. args['directory']
+local start = "singularity instance.start --writable " .. args['directory']
+local stop = "singularity instance.stop " .. args['directory']
 local build = "singularity build --sandbox"
 local git_clone_spaceboard = "git clone https://github.com/spacebeam/spaceboard"
 local spawn = "/opt/spaceboard/"
--- system messages
+-- Your system messages
 local messages = {
   'Can I take your order?',
   'Go ahead HQ.',
@@ -58,13 +63,8 @@ local messages = {
   'Strap yourselves in, boys.',
   'I copy that.',
 }
--- Parse your arguments
-local args = parser:parse()
-local run = "singularity run --writable " .. args['directory']
-local start = "singularity instance.start --writable " .. args['directory']
-local stop = "singularity instance.stop " .. args['directory']
--- Do your stuff
-if args['command'] == 'install' then
+-- Computer do your stuff
+if args['command'] == 'build' then
     if args['unit'] then
         print('Installing ' .. args['unit'] .. ' into ' .. args['directory'])
         -- install singularity container
@@ -114,7 +114,7 @@ elseif args['command'] == 'run' then
     else
         print('Did you forget about the ' .. messages[4])
     end
-elseif args['command'] == 'remove' then
+elseif args['command'] == 'clone' then
     if args['unit'] then
         print('Remove unit ' .. args['unit'])
         os.execute("rm -Rf /opt/sandbox/" .. args['unit'])
