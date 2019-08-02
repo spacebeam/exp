@@ -34,7 +34,7 @@ parser:command("status")
 parser:command("run")
 -- Your system variables
 local build = "singularity build --sandbox"
-local spaceboard = "git clone https://github.com/spacebeam/spaceboard"
+local git_clone_spaceboard = "git clone https://github.com/spacebeam/spaceboard"
 local spawn = "/opt/spaceboard/"
 -- system messages
 local messages = {
@@ -64,7 +64,7 @@ if args['command'] == 'install' then
         -- install singularity container
         print('Done... ' .. messages[math.random(#messages)])
     else
-        os.execute(blackboard .. " " .. spawn)
+        os.execute(git_clone_spaceboard .. " " .. spawn)
         os.execute("curl -O https://erlang.mk/erlang.mk")
         os.execute("mv erlang.mk " .. spawn)
         os.execute("rm erlang.mk")
@@ -78,7 +78,6 @@ elseif args['command'] == 'start' then
         print('Done... ' .. messages[math.random(#messages)])
     else
         os.execute(spawn .. release .. " start")
-        os.execute(start .. "blackboard" .. " bridge")
         print('Done... ' .. messages[math.random(#messages)])
     end
 elseif args['command'] == 'stop' then
@@ -87,7 +86,6 @@ elseif args['command'] == 'stop' then
         os.execute(stop .. args['unit'] .. " " .. args['unit'])
         print('Done... ' .. messages[math.random(#messages)])
     else
-        os.execute(stop .. "blackboard" .. " bridge")
         os.execute(spawn .. release .. " stop")
         print('Done... ' .. messages[math.random(#messages)])
     end
