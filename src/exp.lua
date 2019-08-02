@@ -2,6 +2,9 @@
 --
 -- Spawn multi-dimensional nodes of daemons — all operations run using the exp command.
 --
+-- change here module to exp.module after luarocks release
+local version = require("version")
+-- third-party awesome libraries
 local argparse = require("argparse")
 local socket = require("socket")
 local uuid = require("uuid")
@@ -123,6 +126,8 @@ elseif args['command'] == 'remove' then
     end
 elseif args['command'] == 'cluster' then
     print('Cluster ' .. messages[math.random(#messages)])
+elseif args['command'] == 'version' then
+    print('exp version '..version)
 else
     -- do something else
     print(messages[1])
