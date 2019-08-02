@@ -43,7 +43,7 @@ local spawn = "/opt/spaceboard/"
 local messages = {
   'Can I take your order?',
   'Go ahead HQ.',
-  'SCI-F unit?',
+  'SCI-F app?',
   'Input unit.',
   'When removing your overhead luggage, please be careful.',
   'In case of a water landing, you may be used as a flotation device.',
