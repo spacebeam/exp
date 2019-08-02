@@ -14,24 +14,27 @@ local release = "/_rel/spaceboard_release/bin/spaceboard_release"
 -- CLI argument parser
 local parser = argparse() {
    name = "exp",
-   description = "exp command line toolkit.",
+   description = "Flying Saucer Experience (exp) command line toolkit.",
    epilog = "Remember, as your units grow in number, you must spawn more nodes to control them."
 }
--- Spawning sandbox scif unit at directory
-parser:option("-a --app", "SIF application name", false)
+-- TODO: Missing Scientific Filesystem (SCIF) application!
 parser:option("-u --unit", "unit name, uuid or hash", false)
 parser:option("-x --execute", "exec string", "")
-parser:option("-d --directory", "Sandbox directory", "/opt/exp/")
+parser:option("-a --app", "application name", false)
+parser:option("-d --directory", "Sandbox directory", "/opt/sandbox/")
 -- CLI exp command
 parser:command_target("command")
 parser:command("install")
 parser:command("remove")
+parser:command("cluster")
 parser:command("start")
 parser:command("stop")
-parser:command("status")
--- How if instead of run we force the use of scif apps?
+-- How if instead of run we force the use of SCI-F Apps?
+-- https://sci-f.github.io/apps/examples/tutorials/getting-started
 -- We can probably support both of them, let just start with run.
 parser:command("run")
+parser:command("status")
+parser:command("version")
 -- Your system variables
 local build = "singularity build --sandbox"
 local git_clone_spaceboard = "git clone https://github.com/spacebeam/spaceboard"
@@ -111,13 +114,15 @@ elseif args['command'] == 'run' then
 elseif args['command'] == 'remove' then
     if args['unit'] then
         print('Remove unit ' .. args['unit'])
-        os.execute("rm -Rf /opt/exp/" .. args['unit'])
+        os.execute("rm -Rf /opt/sandbox/" .. args['unit'])
         print('Done... ' .. messages[math.random(#messages)])
     else
         print('Remove spaceboard release from "' .. spawn .. '"')
         os.execute("rm -Rf " .. spawn)
         print('Done... ' .. messages[math.random(#messages)])
     end
+elseif args['command'] == 'cluster' then
+    print('Cluster ' .. messages[math.random(#messages)])
 else
     -- do something else
     print(messages[1])
