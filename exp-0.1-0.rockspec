@@ -1,14 +1,14 @@
-package = "pkg"
+package = "exp"
 version = "0.1-0"
 
 source = {
-  url = "git://github.com/spacebeam/package",
+  url = "git://github.com/spacebeam/exp",
   tag = "0.1.0",
 }
 
 description = {
-  summary = "pkg command line toolkit.",
-  detailed = "Spawn multi-dimensional nodes of daemons — all operations run using the pkg command.",
+  summary = "exp command line toolkit.",
+  detailed = "Spawn multi-dimensional nodes of daemons — all operations run using the exp command.",
   homepage = "https://spacebeam.io",
   license = "AGPL 3"
 }
@@ -24,11 +24,11 @@ dependencies = {
 build = {
   type = 'builtin',
   modules = {
-    ['pkg.version'] = "src/version.lua"
+    ['exp.version'] = "src/version.lua"
   },
   install = {
     bin = {
-      ['pkg'] = "src/pkg.lua"
+      ['exp'] = "src/exp.lua"
     }
   }
 }

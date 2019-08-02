@@ -1,6 +1,6 @@
 #!/usr/bin/env luajit
 --
--- Spawn multi-dimensional nodes of daemons — all operations run using the pkg command.
+-- Spawn multi-dimensional nodes of daemons — all operations run using the exp command.
 --
 local argparse = require("argparse")
 local socket = require("socket")
@@ -10,19 +10,19 @@ uuid.randomseed(socket.gettime()*10000)
 -- Session UUID
 local session_uuid = uuid()
 -- Erlang/OTP release
-local release = "/_rel/blackboard_release/bin/blackboard_release"
+local release = "/_rel/spaceboard_release/bin/spaceboard_release"
 -- CLI argument parser
 local parser = argparse() {
-   name = "pkg",
-   description = "pkg command line toolkit.",
+   name = "exp",
+   description = "exp command line toolkit.",
    epilog = "Remember, as your units grow in number, you must spawn more nodes to control them."
 }
 -- Spawning sandbox scif unit at directory
-parser:option("-a --app", "SCI-F application name", false)
+parser:option("-a --app", "SIF application name", false)
 parser:option("-u --unit", "unit name, uuid or hash", false)
 parser:option("-x --execute", "exec string", "")
-parser:option("-d --directory", "Sandbox directory", "/opt/pkg/")
--- CLI pkg command
+parser:option("-d --directory", "Sandbox directory", "/opt/exp/")
+-- CLI exp command
 parser:command_target("command")
 parser:command("install")
 parser:command("remove")
@@ -34,8 +34,8 @@ parser:command("status")
 parser:command("run")
 -- Your system variables
 local build = "singularity build --sandbox"
-local blackboard = "git clone https://github.com/spacebeam/blackboard"
-local spawn = "/opt/blackboard/"
+local spaceboard = "git clone https://github.com/spacebeam/spaceboard"
+local spawn = "/opt/spaceboard/"
 -- system messages
 local messages = {
   'Can I take your order?',
@@ -113,10 +113,10 @@ elseif args['command'] == 'run' then
 elseif args['command'] == 'remove' then
     if args['unit'] then
         print('Remove unit ' .. args['unit'])
-        os.execute("rm -Rf /opt/scif/" .. args['unit'])
+        os.execute("rm -Rf /opt/exp/" .. args['unit'])
         print('Done... ' .. messages[math.random(#messages)])
     else
-        print('Remove blackboard release from "' .. spawn .. '"')
+        print('Remove spaceboard release from "' .. spawn .. '"')
         os.execute("rm -Rf " .. spawn)
         print('Done... ' .. messages[math.random(#messages)])
     end
