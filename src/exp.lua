@@ -13,7 +13,7 @@ local uuid = require("uuid")
 uuid.randomseed(socket.gettime()*10000)
 -- Session UUID
 local session_uuid = uuid()
--- Erlang/OTP release
+-- Spaceboard Erlang/OTP release
 local release = "/_rel/spaceboard_release/bin/spaceboard_release"
 -- CLI argument parser
 local parser = argparse() {
@@ -56,10 +56,11 @@ local spaceboard = "/opt/spaceboard/"
 -- Computer do your stuff
 if args['command'] == 'build' then
     if args['unit'] then
-        print('Installing ' .. args['unit'] .. ' into ' .. args['directory'])
-        -- install singularity container
+        print('Building ' .. args['unit'] .. ' into ' .. args['directory'])
+        -- build singularity container
         print('Done... ' .. messages[math.random(#messages)])
     else
+        -- build this node and prepare to fight
         os.execute(git_clone_spaceboard .. " " .. spaceboard)
         os.execute("curl -O https://erlang.mk/erlang.mk")
         os.execute("mv erlang.mk " .. spaceboard)
