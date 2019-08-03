@@ -32,7 +32,7 @@ build = {
   },
   install = {
     bin = {
-      ['exp'] = "src/exp.lua"
+      ['exp'] = "src/main.lua"
     }
   }
 }
