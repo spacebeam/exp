@@ -53,7 +53,7 @@ local stop = "singularity instance stop " .. args['directory']
 local build = "singularity build --sandbox"
 local git_clone_spaceboard = "git clone https://github.com/spacebeam/spaceboard"
 local spaceboard = "/opt/spaceboard/"
--- Computer do your stuff
+-- Making computer do your stuff
 if args['command'] == 'build' then
     if args['unit'] then
         print('Building ' .. args['unit'] .. ' into ' .. args['directory'])
@@ -68,6 +68,18 @@ if args['command'] == 'build' then
         os.execute("cd " .. spaceboard .. " && make all")
         print('Done... ' .. messages[math.random(#messages)])
     end
+elseif args['command'] == 'clone' then
+    if args['unit'] then
+        print('Remove unit ' .. args['unit'])
+        os.execute("rm -Rf /opt/sandbox/" .. args['unit'])
+        print('Done... ' .. messages[math.random(#messages)])
+    else
+        print('Remove spaceboard release from "' .. spaceboard .. '"')
+        os.execute("rm -Rf " .. spaceboard)
+        print('Done... ' .. messages[math.random(#messages)])
+    end
+elseif args['command'] == 'cluster' then
+    print('Cluster ' .. messages[math.random(#messages)])
 elseif args['command'] == 'start' then
     if args['unit'] then
         print('Starting unit ' .. args['unit'])
@@ -86,15 +98,6 @@ elseif args['command'] == 'stop' then
         os.execute(spaceboard .. release .. " stop")
         print('Done... ' .. messages[math.random(#messages)])
     end
-elseif args['command'] == 'status' then
-    if args['unit'] then
-        print('Getting the status of unit ' .. args['unit'] )
-        -- status
-        print('Done.. ' .. messages[math.random(#messages)])
-    else
-        os.execute("singularity instance list")
-        os.execute(spaceboard .. release .. " ping")
-    end
 elseif args['command'] == 'run' then
     if args['unit'] then
         if args['execute'] then
@@ -105,18 +108,15 @@ elseif args['command'] == 'run' then
     else
         print('Did you forget about the ' .. messages[4])
     end
-elseif args['command'] == 'clone' then
+elseif args['command'] == 'status' then
     if args['unit'] then
-        print('Remove unit ' .. args['unit'])
-        os.execute("rm -Rf /opt/sandbox/" .. args['unit'])
-        print('Done... ' .. messages[math.random(#messages)])
+        print('Getting the status of unit ' .. args['unit'] )
+        -- status
+        print('Done.. ' .. messages[math.random(#messages)])
     else
-        print('Remove spaceboard release from "' .. spaceboard .. '"')
-        os.execute("rm -Rf " .. spaceboard)
-        print('Done... ' .. messages[math.random(#messages)])
+        os.execute("singularity instance list")
+        os.execute(spaceboard .. release .. " ping")
     end
-elseif args['command'] == 'cluster' then
-    print('Cluster ' .. messages[math.random(#messages)])
 elseif args['command'] == 'version' then
     print('exp version '..version)
 else
