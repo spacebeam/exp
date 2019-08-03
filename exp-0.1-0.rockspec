@@ -7,7 +7,7 @@ source = {
 }
 
 description = {
-  summary = "exp command line toolkit.",
+  summary = "Flying Saucer Experience (exp) command line toolkit.",
   detailed = "Spawn multi-dimensional nodes of daemons — all operations run using the exp command.",
   homepage = "https://spacebeam.io",
   license = "AGPL 3"
@@ -24,7 +24,11 @@ dependencies = {
 build = {
   type = 'builtin',
   modules = {
-    ['exp.version'] = "src/version.lua"
+    ['exp.version'] = "src/version.lua",
+    ['exp.messages'] = "src/messages.lua",
+    ['exp.cluster'] = "src/cluster.lua",
+    ['exp.options'] = "src/options.lua",
+    ['exp.tools'] = "src/tools.lua"
   },
   install = {
     bin = {
