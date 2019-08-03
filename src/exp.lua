@@ -5,7 +5,7 @@
 -- change here module to exp.module after luarocks release
 local version = require("version")
 local messages = require("messages")
--- third-party awesome libraries
+-- third-party lua libraries
 local argparse = require("argparse")
 local socket = require("socket")
 local uuid = require("uuid")
@@ -28,15 +28,20 @@ parser:option("-a --app", "application name", false)
 parser:option("-d --directory", "Sandbox directory", "/opt/sandbox/")
 -- CLI exp command
 parser:command_target("command")
+-- Build its node or unit sandbox from SIF file
 parser:command("build")
+-- Clone an existing previously builded unit
 parser:command("clone")
+-- Cluster this node join or leave other workloads
 parser:command("cluster")
+-- Start and stop encapsulated instance of userspace
 parser:command("start")
 parser:command("stop")
 -- How if instead of run we force the use of SCI-F Apps?
 -- https://sci-f.github.io/apps/examples/tutorials/getting-started
 -- We can probably support both of them, let just start with run.
 parser:command("run")
+-- Operation CWAL
 parser:command("status")
 parser:command("version")
 -- Parse your arguments
