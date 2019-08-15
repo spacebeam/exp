@@ -2,9 +2,8 @@
 --
 -- Spawn multi-dimensional nodes of daemons — all operations run using the exp command.
 --
--- change here module to exp.module after luarocks release
-local messages = require("messages")
-local version = require("version")
+local messages = require("exp.messages")
+local version = require("exp.version")
 -- third-party lua libraries
 local argparse = require("argparse")
 local socket = require("socket")

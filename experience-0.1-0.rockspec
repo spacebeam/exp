@@ -1,8 +1,8 @@
-package = "exp"
+package = "experience"
 version = "0.1-0"
 
 source = {
-  url = "git://github.com/spacebeam/exp",
+  url = "git://github.com/spacebeam/experience",
   tag = "0.1.0",
 }
 
@@ -26,7 +26,7 @@ build = {
   modules = {
     ['exp.version'] = "src/version.lua",
     ['exp.messages'] = "src/messages.lua",
-    ['exp.cluster'] = "src/cluster.lua",
+    ['exp.zstream'] = "src/zstream.lua",
     ['exp.options'] = "src/options.lua",
     ['exp.tools'] = "src/tools.lua"
   },
