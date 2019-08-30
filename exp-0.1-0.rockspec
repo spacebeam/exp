@@ -1,15 +1,15 @@
-package = "experience"
+package = "exp"
 version = "0.1-0"
 
 source = {
-  url = "git://github.com/spacebeam/experience",
+  url = "git://github.com/spacebeam/exp",
   tag = "0.1.0",
 }
 
 description = {
-  summary = "Flying Saucer Experience (exp) command line toolkit.",
+  summary = "Flying saucer experience (exp) command line tool.",
   detailed = "Spawn multi-dimensional nodes of daemons — all operations run using the exp command.",
-  homepage = "https://spacebeam.io",
+  homepage = "https://spacebeam.org",
   license = "AGPL 3"
 }
 
@@ -26,7 +26,7 @@ build = {
   modules = {
     ['exp.version'] = "src/version.lua",
     ['exp.messages'] = "src/messages.lua",
-    ['exp.zstream'] = "src/zstream.lua",
+    ['exp.zstreams'] = "src/zstreams.lua",
     ['exp.options'] = "src/options.lua",
     ['exp.tools'] = "src/tools.lua"
   },
