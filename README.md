@@ -1,5 +1,5 @@
 # exp
-Flying Saucer Experience (`exp`) command line toolkit.
+Flying Saucer Experience (`exp`) command line tool.
 
 This system build information nodes provided for convenience spawning daemons over time that grow into other units.
 
