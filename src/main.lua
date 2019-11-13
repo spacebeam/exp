@@ -55,14 +55,14 @@ if args['command'] == 'build' then
         local file = "/opt/exp/include/"..args['unit'] .. ".yml"
         local content = tools.read_file(file)
         local unit = yaml.parse(content)
-            
+        print('Building ' .. args['unit'] .. ' into ' .. args['directory'])
         if unit['fetch'] == 'git' then
-            print(unit['url'])
+            os.execute("git clone " .. unit['url'] .. " /var/spool/exp/".. unit['name'])
         else print('let this crash')
         end
-
-        print('Building ' .. args['unit'] .. ' into ' .. args['directory'])
         -- build singularity container
+	os.execute(build .. ' ' ..args['directory'] .. unit['name'] .. 
+	           ' ' .. spool .. '/exp/' .. unit['name'] .. '/' .. unit['name'] .. '.sif')
         print('Done... ' .. messages[math.random(#messages)])
     else
         os.execute("mkdir " .. spool .."/exp")
