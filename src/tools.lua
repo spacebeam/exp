@@ -1,3 +1,5 @@
+-- very self-explanatory
+
 local tools = {}
 
 function tools.read_file(file)
@@ -6,4 +8,5 @@ function tools.read_file(file)
     f:close()
     return content
 end
+
 return tools
