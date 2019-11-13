@@ -72,6 +72,7 @@ if args['command'] == 'build' then
         -- build singularity container
         print('Done... ' .. messages[math.random(#messages)])
     else
+        os.execute("mkdir " .. spool .."/exp")
         -- fetch current index
         os.execute("git clone https://github.com/spacebeam/exp /opt/exp")
         -- build this node and prepare to fight
