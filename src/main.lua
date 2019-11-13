@@ -16,6 +16,8 @@ uuid.randomseed(socket.gettime()*10000)
 local session_uuid = uuid()
 -- Spaceboard Erlang/OTP release
 local release = "/_rel/spaceboard_release/bin/spaceboard_release"
+-- *nix spawning pool
+local spool = "/var/spool"
 -- CLI argument parser
 local parser = argparse() {
    name = "exp",
@@ -57,9 +59,8 @@ local spaceboard = "/opt/spaceboard/"
 -- Making computer do your stuff
 if args['command'] == 'build' then
     if args['unit'] then
-        local getsif = "/opt/exp/include/"..args['unit'] .. ".yml"
-        print(getsif)
-        local content = tools.read_file(getsif)
+        local file = "/opt/exp/include/"..args['unit'] .. ".yml"
+        local content = tools.read_file(file)
         local unit = yaml.parse(content)
             
         if unit['fetch'] == 'git' then
