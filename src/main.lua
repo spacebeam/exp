@@ -21,7 +21,7 @@ local spool = "/var/spool"
 -- CLI argument parser
 local parser = argparse() {
    name = "exp",
-   description = "Flying Saucer Experience (exp) command line toolkit.",
+   description = "Flying saucer (exp)erience command line tool.",
    epilog = "Remember, as your units grow in number, you must spawn more nodes to control them."
 }
 parser:option("-u --unit", "unit name, uuid or SHA256 hash", false)
