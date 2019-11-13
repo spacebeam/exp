@@ -2,9 +2,11 @@
 --
 -- Spawn multi-dimensional nodes of daemons — all operations run using the exp command.
 --
+local tools = require("exp.tools")
 local messages = require("exp.messages")
 local version = require("exp.version")
 -- third-party lua libraries
+local yaml = require("exp.lib.yaml")
 local argparse = require("argparse")
 local socket = require("socket")
 local uuid = require("uuid")
@@ -55,6 +57,16 @@ local spaceboard = "/opt/spaceboard/"
 -- Making computer do your stuff
 if args['command'] == 'build' then
     if args['unit'] then
+        local getsif = "/opt/exp/include/"..args['unit'] .. ".yml"
+        print(getsif)
+        local content = tools.read_file(getsif)
+        local unit = yaml.parse(content)
+            
+        if unit['fetch'] == 'git' then
+            print(unit['url'])
+        else print('let this crash')
+        end
+
         print('Building ' .. args['unit'] .. ' into ' .. args['directory'])
         -- build singularity container
         print('Done... ' .. messages[math.random(#messages)])
