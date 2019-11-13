@@ -59,6 +59,8 @@ if args['command'] == 'build' then
         -- build singularity container
         print('Done... ' .. messages[math.random(#messages)])
     else
+        -- fetch current index
+        os.execute("git clone https://github.com/spacebeam/exp /opt/exp")
         -- build this node and prepare to fight
         os.execute(git_clone_spaceboard .. " " .. spaceboard)
         os.execute("curl -O https://erlang.mk/erlang.mk")
@@ -69,15 +71,16 @@ if args['command'] == 'build' then
     end
 elseif args['command'] == 'clone' then
     if args['unit'] then
-        print('Remove unit ' .. args['unit'])
-        os.execute("rm -Rf /opt/sandbox/" .. args['unit'])
+        print('Cloning unit ' .. args['unit'])
+        os.execute("#missing link to an existing sandbox or container image already uploaded to https://torchup.org/" .. args['unit'])
         print('Done... ' .. messages[math.random(#messages)])
     else
-        print('Remove spaceboard release from "' .. spaceboard .. '"')
-        os.execute("rm -Rf " .. spaceboard)
-        print('Done... ' .. messages[math.random(#messages)])
+        print('Error... you are missing the -u --unit name, uuid or SHA256 hash')
     end
 elseif args['command'] == 'cluster' then
+ 
+    -- Where is the communication scheme?
+    
     print('Cluster ' .. messages[math.random(#messages)])
 elseif args['command'] == 'start' then
     if args['unit'] then
@@ -113,6 +116,7 @@ elseif args['command'] == 'status' then
         -- status
         print('Done.. ' .. messages[math.random(#messages)])
     else
+
         os.execute("singularity instance list")
         os.execute(spaceboard .. release .. " ping")
     end

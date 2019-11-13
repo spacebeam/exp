@@ -1,0 +1,6 @@
+name: starcraft
+description: StarCraft inside a Singularity container
+homepage: https://spacebeam.org
+fetch: git
+url: https://github.com/spacebeam/starcraft-sif
+commit: master
