@@ -36,9 +36,6 @@ parser:command("cluster")
 -- Start and stop encapsulated instance of userspace
 parser:command("start")
 parser:command("stop")
--- How if instead of run we force the use of SCI-F Apps?
--- https://sci-f.github.io/apps/examples/tutorials/getting-started
--- We can probably support both of them, let just start with run.
 parser:command("run")
 -- Operation CWAL
 parser:command("status")
