@@ -24,17 +24,13 @@ local parser = argparse() {
    description = "Flying Saucer Experience (exp) command line toolkit.",
    epilog = "Remember, as your units grow in number, you must spawn more nodes to control them."
 }
--- TODO: Missing Scientific Filesystem (SCIF) application!
-parser:option("-u --unit", "unit name, uuid or hash", false)
+parser:option("-u --unit", "unit name, uuid or SHA256 hash", false)
 parser:option("-x --execute", "exec string", "")
-parser:option("-a --app", "application name", false)
 parser:option("-d --directory", "Sandbox directory", "/opt/sandbox/")
 -- CLI exp command
 parser:command_target("command")
 -- Build its node or unit sandbox from SIF file
 parser:command("build")
--- Clone an existing previously builded unit
-parser:command("clone")
 -- Cluster this node join or leave other workloads
 parser:command("cluster")
 -- Start and stop encapsulated instance of userspace
@@ -82,14 +78,6 @@ if args['command'] == 'build' then
         os.execute("rm erlang.mk")
         os.execute("cd " .. spaceboard .. " && make all")
         print('Done... ' .. messages[math.random(#messages)])
-    end
-elseif args['command'] == 'clone' then
-    if args['unit'] then
-        print('Cloning unit ' .. args['unit'])
-        os.execute("#missing link to an existing sandbox or container image already uploaded to https://torchup.org/" .. args['unit'])
-        print('Done... ' .. messages[math.random(#messages)])
-    else
-        print('Error... you are missing the -u --unit name, uuid or SHA256 hash')
     end
 elseif args['command'] == 'cluster' then
  
