@@ -31,8 +31,6 @@ parser:option("-d --directory", "Sandbox directory", "/opt/sandbox/")
 parser:command_target("command")
 -- Build its node or unit sandbox from SIF file
 parser:command("build")
--- Cluster this node join or leave other workloads
-parser:command("cluster")
 -- Start and stop encapsulated instance of userspace
 parser:command("start")
 parser:command("stop")
@@ -76,11 +74,6 @@ if args['command'] == 'build' then
         os.execute("cd " .. spaceboard .. " && make all")
         print('Done... ' .. messages[math.random(#messages)])
     end
-elseif args['command'] == 'cluster' then
- 
-    -- Where is the communication scheme?
-    
-    print('Cluster ' .. messages[math.random(#messages)])
 elseif args['command'] == 'start' then
     if args['unit'] then
         print('Starting unit ' .. args['unit'])
