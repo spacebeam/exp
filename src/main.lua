@@ -21,10 +21,10 @@ local spool = "/var/spool"
 -- CLI argument parser
 local parser = argparse() {
    name = "exp",
-   description = "Flying saucer (exp)erience command line tool.",
+   description = "Spacebeam (exp)erience command line tool.",
    epilog = "Remember, as your units grow in number, you must spawn more nodes to control them."
 }
-parser:option("-u --unit", "unit name, uuid or SHA256 hash", false)
+parser:option("-u --unit", "unit name, uuid or MD5 hash", false)
 parser:option("-x --execute", "exec string", "")
 parser:option("-d --directory", "Sandbox directory", "/opt/sandbox/")
 -- CLI exp command
