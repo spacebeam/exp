@@ -1,0 +1,6 @@
+name: riak
+description: Riak KV inside a Singularity container
+homepage: https://spacebeam.org
+fetch: git
+url: https://github.com/spacebeam/riak-sif
+commit: master
