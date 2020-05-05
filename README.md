@@ -1,4 +1,4 @@
-# zerg
+# luna
 This system build information nodes provided for convenience spawning daemons over time that grow into other units.
 
 ## Community
