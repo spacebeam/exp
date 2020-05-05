@@ -1,12 +1,12 @@
 #!/usr/bin/env luajit
 --
--- Spawn multi-dimensional nodes of daemons — all operations run using the exp command.
+-- Spawn nodes of daemons — all operations run using command luna.
 --
-local tools = require("exp.tools")
-local messages = require("exp.messages")
-local version = require("exp.version")
+local tools = require("luna.tools")
+local messages = require("luna.messages")
+local version = require("luna.version")
 -- third-party lua libraries
-local yaml = require("exp.lib.yaml")
+local yaml = require("luna.lib.yaml")
 local argparse = require("argparse")
 local socket = require("socket")
 local uuid = require("uuid")
@@ -21,13 +21,12 @@ local spool = "/var/spool"
 -- CLI argument parser
 local parser = argparse() {
    name = "exp",
-   description = "Spacebeam (exp)erience command line tool.",
+   description = "Spaceboard workspace (luna) command line tool.",
    epilog = "Remember, as your units grow in number, you must spawn more nodes to control them."
 }
-parser:option("-u --unit", "unit name, uuid or MD5 hash", false)
+parser:option("-u --unit", "unit name, uuid or MD5 checksum", false)
 parser:option("-x --execute", "exec string", "")
 parser:option("-d --directory", "Sandbox directory", "/opt/sandbox/")
--- CLI exp command
 parser:command_target("command")
 -- Build its node or unit sandbox from SIF file
 parser:command("build")
@@ -35,19 +34,17 @@ parser:command("build")
 parser:command("start")
 parser:command("stop")
 parser:command("run")
--- Operation CWAL
 parser:command("status")
 parser:command("version")
--- Parse your arguments
+
 local args = parser:parse()
--- Your system variables
 local run = "singularity run --writable " .. args['directory']
 local start = "singularity instance start --writable " .. args['directory']
 local stop = "singularity instance stop " .. args['directory']
 local build = "singularity build --sandbox"
 local git_clone_spaceboard = "git clone https://github.com/spacebeam/spaceboard"
 local spaceboard = "/opt/spaceboard/"
--- Making computer do your stuff
+
 if args['command'] == 'build' then
     if args['unit'] then
         local file = "/opt/exp/include/"..args['unit'] .. ".yml"
@@ -59,8 +56,8 @@ if args['command'] == 'build' then
         else print('let this crash')
         end
         -- build singularity container
-	os.execute(build .. ' ' ..args['directory'] .. unit['name'] .. 
-	           ' ' .. spool .. '/exp/' .. unit['name'] .. '/' .. unit['name'] .. '.sif')
+        os.execute(build .. ' ' ..args['directory'] .. unit['name'] .. 
+        ' ' .. spool .. '/exp/' .. unit['name'] .. '/' .. unit['name'] .. '.sif')
         print('Done... ' .. messages[math.random(#messages)])
     else
         os.execute("mkdir " .. spool .."/exp")

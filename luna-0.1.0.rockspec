@@ -1,4 +1,4 @@
-package = "exp"
+package = "luna"
 version = "0.1-0"
 
 source = {
@@ -7,8 +7,8 @@ source = {
 }
 
 description = {
-  summary = "Flying saucer experience (exp) command line tool.",
-  detailed = "Spawn multi-dimensional nodes of daemons — all operations run using the exp command.",
+  summary = "Spaceboard workspace (luna) command line tool.",
+  detailed = "Spawn nodes of daemons — all operations run using the luna command.",
   homepage = "https://spacebeam.org",
   license = "AGPL 3"
 }
