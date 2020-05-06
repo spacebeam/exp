@@ -1,0 +1,6 @@
+name: openresty
+description: OpenResty inside a Singularity container
+homepage: https://spacebeam.org
+fetch: git
+url: https://github.com/spacebeam/openresty-sif
+commit: master

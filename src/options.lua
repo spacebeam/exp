@@ -1,1 +1,1 @@
--- for now just get cluster variable from exp.conf yaml file?
+-- for now just get cluster variable from luna.conf?
