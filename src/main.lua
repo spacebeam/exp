@@ -27,7 +27,7 @@ local parser = argparse() {
    description = "Spaceboard workspace (luna) command line tool.",
    epilog = "Remember, as your units grow in number, you must spawn more nodes to control them."
 }
-parser:option("-u --unit", "unit name, uuid or hash", false)
+parser:option("-u --unit", "name, uuid or hash", false)
 parser:option("-x --execute", "exec string", "")
 parser:option("-d --directory", "Sandbox directory", "/opt/sandbox/")
 parser:command_target("command")

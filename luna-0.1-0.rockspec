@@ -2,7 +2,7 @@ package = "luna"
 version = "0.1-0"
 
 source = {
-  url = "git://github.com/spacebeam/exp",
+  url = "git://github.com/spacebeam/luna",
   tag = "0.1.0",
 }
 
@@ -24,17 +24,16 @@ dependencies = {
 build = {
   type = 'builtin',
   modules = {
-    ['exp.lib.json'] = "src/lib/json.lua",
-    ['exp.lib.yaml'] = "src/lib/YAMLParserLite.lua",
-    ['exp.version'] = "src/version.lua",
-    ['exp.messages'] = "src/messages.lua",
-    ['exp.zstreams'] = "src/zstreams.lua",
-    ['exp.options'] = "src/options.lua",
-    ['exp.tools'] = "src/tools.lua"
+    ['luna.lib.json'] = "src/lib/json.lua",
+    ['luna.lib.yaml'] = "src/lib/YAMLParserLite.lua",
+    ['luna.version'] = "src/version.lua",
+    ['luna.messages'] = "src/messages.lua",
+    ['luna.options'] = "src/options.lua",
+    ['luna.tools'] = "src/tools.lua"
   },
   install = {
     bin = {
-      ['exp'] = "src/main.lua"
+      ['luna'] = "src/main.lua"
     }
   }
 }
