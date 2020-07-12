@@ -1,4 +1,4 @@
-package = "luna"
+package = "spacebeam"
 version = "0.1-0"
 
 source = {
@@ -7,7 +7,7 @@ source = {
 }
 
 description = {
-  summary = "Spaceboard workspace (luna) command line tool.",
+  summary = "Spacebeam workspace (luna) command line tool.",
   detailed = "Spawn nodes of daemons — all operations run using the luna command.",
   homepage = "https://spacebeam.org",
   license = "AGPL 3"
@@ -24,12 +24,12 @@ dependencies = {
 build = {
   type = 'builtin',
   modules = {
-    ['luna.lib.json'] = "src/lib/json.lua",
-    ['luna.lib.yaml'] = "src/lib/YAMLParserLite.lua",
-    ['luna.version'] = "src/version.lua",
-    ['luna.messages'] = "src/messages.lua",
-    ['luna.options'] = "src/options.lua",
-    ['luna.tools'] = "src/tools.lua"
+    ['spacebeam.lib.json'] = "src/lib/json.lua",
+    ['spacebeam.lib.yaml'] = "src/lib/YAMLParserLite.lua",
+    ['spacebeam.version'] = "src/version.lua",
+    ['spacebeam.messages'] = "src/messages.lua",
+    ['spacebeam.options'] = "src/options.lua",
+    ['spacebeam.tools'] = "src/tools.lua"
   },
   install = {
     bin = {

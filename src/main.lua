@@ -2,11 +2,11 @@
 --
 -- Spawn nodes of daemons — all operations run using command luna.
 --
-local tools = require("luna.tools")
-local messages = require("luna.messages")
-local version = require("luna.version")
+local tools = require("spacebeam.tools")
+local messages = require("spacebeam.messages")
+local version = require("spacebeam.version")
 -- third-party lua libraries
-local yaml = require("luna.lib.yaml")
+local yaml = require("spacebeam.lib.yaml")
 local argparse = require("argparse")
 local socket = require("socket")
 local uuid = require("uuid")
@@ -24,7 +24,7 @@ local spool = "/var/spool"
 -- CLI argument parser
 local parser = argparse() {
    name = "luna",
-   description = "Spaceboard workspace (luna) command line tool.",
+   description = "Spacebeam workspace (luna) command line tool.",
    epilog = "Remember, as your units grow in number, you must spawn more nodes to control them."
 }
 parser:option("-u --unit", "name, uuid or hash", false)
