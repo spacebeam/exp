@@ -1,0 +1,6 @@
+name: mango 
+description: Plug and Play tropical mango 
+homepage: https://spacebeam.org
+fetch: git
+url: https://github.com/spacebeam/mango
+commit: master
