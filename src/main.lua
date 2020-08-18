@@ -5,6 +5,7 @@
 local tools = require("spacebeam.tools")
 local messages = require("spacebeam.messages")
 local version = require("spacebeam.version")
+local options = require("spacebeam.options")
 -- third-party lua libraries
 local yaml = require("spacebeam.lib.yaml")
 local argparse = require("argparse")
@@ -14,8 +15,6 @@ local uuid = require("uuid")
 uuid.randomseed(socket.gettime()*10000)
 -- Session UUID
 local session_uuid = uuid()
-
-print(session_uuid)
 
 -- Spaceboard Erlang/OTP release
 local release = "/_rel/spaceboard_release/bin/spaceboard_release"
@@ -108,7 +107,7 @@ elseif args['command'] == 'status' then
         -- status
         print('Done.. ' .. messages[math.random(#messages)])
     else
-
+        print('Execution session ' .. session_uuid)
         os.execute("singularity instance list")
         os.execute(spaceboard .. release .. " ping")
     end

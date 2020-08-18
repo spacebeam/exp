@@ -16,6 +16,7 @@ description = {
 dependencies = {
   "lua == 5.1",
   "argparse",
+  "inifile",
   "luasocket",
   "lzmq-ffi",
   "uuid"
