@@ -6,3 +6,6 @@ Spacebeam is a multidisciplinary open-source research & development community th
 distributed systems, artificial intelligence and high-performance computing.
 
 [Explore](https://spacebeam.org) and remember; as the system grow in number, spawn more nodes to control it.
+
+## Contributing
+See  [Contributing](CONTRIBUTING.md).
