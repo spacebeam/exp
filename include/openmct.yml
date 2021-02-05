@@ -1,0 +1,6 @@
+name: openmct
+description: Open MCT inside a Singularity container
+homepage: https://spacebeam.org
+fetch: git
+url: https://github.com/spacebeam/openmct-sif
+commit: master

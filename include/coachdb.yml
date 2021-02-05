@@ -1,0 +1,6 @@
+name: coachdb
+description: CoachDB inside a Singularity container
+homepage: https://spacebeam.org
+fetch: git
+url: https://github.com/spacebeam/coachdb-sif
+commit: master
