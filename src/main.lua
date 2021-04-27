@@ -1,13 +1,13 @@
 #!/usr/bin/env luajit
 --
--- Spawn nodes of daemons — all operations run using command luna.
+-- Spawn nodes of processes — all operations run using command zerg.
 --
-local tools = require("spacebeam.tools")
-local messages = require("spacebeam.messages")
-local version = require("spacebeam.version")
-local options = require("spacebeam.options")
+local tools = require("zerg.tools")
+local messages = require("zerg.messages")
+local version = require("zerg.version")
+local options = require("zerg.options")
 -- third-party lua libraries
-local yaml = require("spacebeam.lib.yaml")
+local yaml = require("zerg.lib.yaml")
 local argparse = require("argparse")
 local socket = require("socket")
 local uuid = require("uuid")
@@ -22,8 +22,8 @@ local release = "/_rel/spaceboard_release/bin/spaceboard_release"
 local spool = "/var/spool"
 -- CLI argument parser
 local parser = argparse() {
-   name = "luna",
-   description = "Spacebeam workspace (luna) command line tool.",
+   name = "zerg",
+   description = "Live for the Swarm!",
    epilog = "Remember, as your units grow in number, you must spawn more nodes to control them."
 }
 parser:option("-u --unit", "name, uuid or hash", false)
@@ -49,22 +49,22 @@ local spaceboard = "/opt/spaceboard/"
 
 if args['command'] == 'build' then
     if args['unit'] then
-        local file = "/opt/luna/include/"..args['unit'] .. ".yml"
+        local file = "/opt/zerg/include/"..args['unit'] .. ".yml"
         local content = tools.read_file(file)
         local unit = yaml.parse(content)
         print('Building ' .. args['unit'] .. ' into ' .. args['directory'])
         if unit['fetch'] == 'git' then
-            os.execute("git clone " .. unit['url'] .. " /var/spool/luna/".. unit['name'])
+            os.execute("git clone " .. unit['url'] .. " /var/spool/zerg/".. unit['name'])
         else print('let this crash')
         end
         -- build singularity container
         os.execute(build .. ' ' ..args['directory'] .. unit['name'] ..
-        ' ' .. spool .. '/luna/' .. unit['name'] .. '/' .. unit['name'] .. '.sif')
+        ' ' .. spool .. '/zerg/' .. unit['name'] .. '/' .. unit['name'] .. '.sif')
         print('Done... ' .. messages[math.random(#messages)])
     else
-        os.execute("mkdir " .. spool .."/luna")
+        os.execute("mkdir " .. spool .."/zerg")
         -- fetch current index
-        os.execute("git clone https://github.com/spacebeam/luna /opt/luna")
+        os.execute("git clone https://github.com/spacebeam/zerg /opt/zerg")
         -- build this node and prepare to fight
         os.execute(git_clone_spaceboard .. " " .. spaceboard)
         os.execute("curl -O https://erlang.mk/erlang.mk")
@@ -112,7 +112,7 @@ elseif args['command'] == 'status' then
         os.execute(spaceboard .. release .. " ping")
     end
 elseif args['command'] == 'version' then
-    print('luna version '..version)
+    print('zerg version '..version)
 else
     -- do something else
     print(messages[1])

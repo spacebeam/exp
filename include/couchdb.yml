@@ -1,0 +1,6 @@
+name: couchdb
+description: CouchDB inside a Singularity container
+homepage: https://spacebeam.org
+fetch: git
+url: https://github.com/spacebeam/couchdb-sif
+commit: master

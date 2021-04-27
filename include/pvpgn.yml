@@ -1,6 +1,0 @@
-name: pvpgn
-description: PvPGN inside a Singularity container
-homepage: https://spacebeam.org
-fetch: git
-url: https://github.com/spacebeam/pvpgn-sif
-commit: master
